@@ -39,7 +39,7 @@ namespace CalendarEvents.IDP
                 alice = new ApplicationUser
                 {
                     UserName = "alice",
-                    Id = Guid.NewGuid().ToString()                    
+                    Id = "b33f681e-df79-456c-b048-c9fc3e9416e9"
                 };
                 var result = await userMgr.CreateAsync(alice, "Pass123$");
                 if (!result.Succeeded)
@@ -71,9 +71,9 @@ namespace CalendarEvents.IDP
             if (bob == null)
             {
                 bob = new ApplicationUser
-                {
+                {                    
                     UserName = "bob",
-                    Id = Guid.NewGuid().ToString()
+                    Id = "6f43e222-04b2-465c-8da3-a9e1f17b3b66"
                 };
                 var result = await userMgr.CreateAsync(bob, "Pass123$");
                 if (!result.Succeeded)

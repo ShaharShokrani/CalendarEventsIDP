@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalendarEvents.IDP", "CalendarEvents.IDP.csproj", "{8119958D-304F-4E7D-AC71-42471C25D986}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalendatEvents.IDPTests", "..\CalendatEvents.IDPTests\CalendatEvents.IDPTests.csproj", "{564463F4-B7DD-4808-8E46-14834564386B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8119958D-304F-4E7D-AC71-42471C25D986}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8119958D-304F-4E7D-AC71-42471C25D986}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8119958D-304F-4E7D-AC71-42471C25D986}.Release|Any CPU.Build.0 = Release|Any CPU
+		{564463F4-B7DD-4808-8E46-14834564386B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{564463F4-B7DD-4808-8E46-14834564386B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{564463F4-B7DD-4808-8E46-14834564386B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{564463F4-B7DD-4808-8E46-14834564386B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

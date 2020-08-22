@@ -6,6 +6,7 @@ using CalendarEvents.IDP.Data;
 using CalendarEvents.IDP.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -62,17 +63,17 @@ namespace CalendarEvents.IDP
 
             string server = Environment.GetEnvironmentVariable("DatabaseServer") ?? "localhost";
             string database = Environment.GetEnvironmentVariable("DatabaseName") ?? "CalendarEventsAuthDB";
-            string port = Environment.GetEnvironmentVariable("DatabasePort") ?? "1433";
+            string port = Environment.GetEnvironmentVariable("DatabasePort") ?? "1443";
             string user = Environment.GetEnvironmentVariable("DatabaseUser") ?? "sa";
             string password = Environment.GetEnvironmentVariable("DatabasePassword") ?? "<YourStrong@Passw0rd>";
 
-            string connectionString = $"Server={server};Database={database};User ID={user};Password={password};";
+            string connectionString = $"Server={server},{port};Database={database};User ID={user};Password={password};";
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()                
                 .AddDefaultTokenProviders();
             
             var builder = services.AddIdentityServer(options =>
@@ -80,7 +81,7 @@ namespace CalendarEvents.IDP
                     options.Events.RaiseErrorEvents = true;
                     options.Events.RaiseInformationEvents = true;
                     options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;                      
+                    options.Events.RaiseSuccessEvents = true;                    
                 })
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)
@@ -116,6 +117,7 @@ namespace CalendarEvents.IDP
                 PrepareDB.PreparePopulation(app).Wait();
             }
 
+            app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Strict });
             app.UseStaticFiles();
             app.UseCors(MyAllowSpecificOrigins);
             app.UseRouting();

@@ -81,7 +81,8 @@ namespace CalendarEvents.IDP
                     options.Events.RaiseErrorEvents = true;
                     options.Events.RaiseInformationEvents = true;
                     options.Events.RaiseFailureEvents = true;
-                    options.Events.RaiseSuccessEvents = true;                    
+                    options.Events.RaiseSuccessEvents = true;
+                    options.IssuerUri = Environment.GetEnvironmentVariable("IssuerUri") ?? "http://idp";
                 })
                 .AddInMemoryIdentityResources(Config.Ids)
                 .AddInMemoryApiResources(Config.Apis)

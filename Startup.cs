@@ -65,7 +65,7 @@ namespace CalendarEvents.IDP
             if (string.IsNullOrEmpty(connectionString))
             {
                 string server = Environment.GetEnvironmentVariable("DatabaseServer") ?? "localhost";
-                string database = Environment.GetEnvironmentVariable("DatabaseName") ?? "CalendarEventsAuthDB";
+                string database = Environment.GetEnvironmentVariable("DatabaseName") ?? "CalendarEventsIDPDB";
                 string port = Environment.GetEnvironmentVariable("DatabasePort") ?? "1443";
                 string user = Environment.GetEnvironmentVariable("DatabaseUser") ?? "sa";
                 string password = Environment.GetEnvironmentVariable("DatabasePassword") ?? "<YourStrong@Passw0rd>";
@@ -120,11 +120,12 @@ namespace CalendarEvents.IDP
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            PrepareDB.PreparePopulation(app).Wait();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-                PrepareDB.PreparePopulation(app).Wait();
+                app.UseDatabaseErrorPage();                
             }
 
             app.UseCookiePolicy(new CookiePolicyOptions { MinimumSameSitePolicy = SameSiteMode.Strict });

@@ -31,7 +31,7 @@ namespace CalendarEvents.IDP
 
         private static async Task SeedData(ApplicationDbContext context, UserManager<ApplicationUser> userMgr)
         {
-            System.Console.WriteLine("Appling Migrations...");
+            System.Console.WriteLine("Appling Migrations..."); //TODO: Seperate the migration
             context.Database.Migrate();
             var alice = await userMgr.FindByNameAsync("alice");
             if (alice == null)

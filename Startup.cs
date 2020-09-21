@@ -41,7 +41,8 @@ namespace CalendarEvents.IDP
                                   {
                                       //TODO: Use the config instead.
                                       builder
-                                      .SetIsOriginAllowed(origin => origin == $"http://{clientUri}")
+                                      .AllowAnyOrigin()
+                                      //.SetIsOriginAllowed(origin => origin == $"http://{clientUri}")
                                       .AllowAnyHeader()
                                       .AllowAnyMethod();
                                   });
